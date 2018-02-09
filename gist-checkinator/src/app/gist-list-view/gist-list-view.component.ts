@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GISTS } from '../mock-gists';
+import { GistService } from '../gist.service';
 
 @Component({
   selector: 'app-gist-list-view',
@@ -8,12 +8,17 @@ import { GISTS } from '../mock-gists';
   styleUrls: ['./gist-list-view.component.css']
 })
 export class GistListViewComponent implements OnInit {
-  gists = GISTS;
-  constructor() {
-    console.log('Gists', GISTS);
+  gists: Array<Object>;
+  constructor(private gistService: GistService) {
   }
-
+  
   ngOnInit() {
+    this.gists = this.gistService.getData();
+    // .then(function () {
+      
+      // })
+
+    console.log('Gists', this.gists);
   }
 
 }

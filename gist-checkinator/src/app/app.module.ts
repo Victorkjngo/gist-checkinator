@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GistEntryViewComponent } from './gist-entry-view/gist-entry-view.component';
 import { GistListViewComponent } from './gist-list-view/gist-list-view.component';
+import { GistService } from './gist.service';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { GistListViewComponent } from './gist-list-view/gist-list-view.component
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [GistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
