@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-
 import { GISTS } from './mock-gists';
+
+import { access_token } from '../../access_token';
 
 @Injectable()
 export class GistService {
+  private query_string: String = '?access_token=' + access_token.github_access_token;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   createGist (title: string, content: string, description: string) {
     console.log('CREATING', title, 'CONTENTS:', content);
@@ -24,7 +28,7 @@ export class GistService {
       body: JSON.stringify(payload)
     };
 
-    return fetch('https://api.github.com/gists?access_token=ebe57335ca486b10e31b74e7a93e4596e36e932d', options)
+    return fetch('https://api.github.com/gists' + this.query_string, options)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -45,7 +49,7 @@ export class GistService {
       method: 'DELETE'
     };
 
-    return fetch('https://api.github.com/gists/' + id + '?access_token=ebe57335ca486b10e31b74e7a93e4596e36e932d', options)
+    return fetch('https://api.github.com/gists/' + id + this.query_string, options)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -86,7 +90,7 @@ export class GistService {
 
   getData() {
     console.log('Trying to get data from github...')
-    return fetch('https://api.github.com/users/digital-promise-test/gists?access_token=ebe57335ca486b10e31b74e7a93e4596e36e932d')
+    return fetch('https://api.github.com/users/digital-promise-test/gists' + this.query_string)
       .then((response) => {
         if (response.ok) {
           console.log('GET success!');
