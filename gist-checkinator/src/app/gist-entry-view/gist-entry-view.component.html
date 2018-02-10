@@ -1,7 +1,11 @@
 <div class="gist">
    <button>x</button>
-   <h6>FILENAME</h6><span>USERNAME</span><p>URL</p>
-   <p>DESCRIPTION</p>
-   <textarea>CONTENT</textarea>
+
+  <p>{{gist.file_name}}</p>
+  <p>
+     <span>Description:</span>{{gist.description}}
+    </p>
+   <textarea>{{gist.content}}</textarea>
+   <button>Submit</button>
    {{gist}}
 </div>

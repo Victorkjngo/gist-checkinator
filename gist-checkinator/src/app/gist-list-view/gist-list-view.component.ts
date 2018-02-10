@@ -18,7 +18,7 @@ export class GistListViewComponent implements OnInit {
       
       // })
 
-    console.log('Gists', this.gists);
+    console.log('GIST LIST VIEW INITS Gists', this.gists);
   }
 
 }
