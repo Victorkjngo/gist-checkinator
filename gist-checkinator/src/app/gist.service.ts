@@ -32,6 +32,7 @@ export class GistService {
           console.log('GIST GET FAILED');
         }
       })
+      .then(data => this.transformDatum(data))
       .catch((err) => {
         console.log('Wop whop, did something wrong...');
         return [];
