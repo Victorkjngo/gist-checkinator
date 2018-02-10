@@ -37,8 +37,6 @@ export class GistEntryViewComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('GIST ENTR INIT', this.gist);
-    console.log('GIST ENTRY INITS: GIST username', this.gist.file_name);
   }
 
 }

@@ -89,7 +89,7 @@ export class GistService {
   }
 
   getData() {
-    console.log('Trying to get data from github...')
+    console.log('Trying to get data from github...') 
     return fetch('https://api.github.com/users/digital-promise-test/gists' + this.query_string)
       .then((response) => {
         if (response.ok) {
