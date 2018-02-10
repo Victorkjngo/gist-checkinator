@@ -11,6 +11,13 @@ export class GistListViewComponent implements OnInit {
   gists: Array<Object>;
   constructor(private gistService: GistService) {
   }
+
+  createGist (title: string, content: string) {
+    console.log('CREATING', title, 'CONTENTS:', content);
+    // Add the thing to gists
+    // send request to gistService
+    this.gistService.createGist(title, content, '');
+  }
   
   ngOnInit() {
     this.gistService.getData()

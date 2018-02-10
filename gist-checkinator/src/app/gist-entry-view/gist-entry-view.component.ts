@@ -9,19 +9,18 @@ import { GistService } from '../gist.service';
 })
 export class GistEntryViewComponent implements OnInit {
   @Input() gist: Object;
-  @Input() gists: Object[];
+  @Input() gists: Object[]; // Need this to remove GistEntryView from GistListView upon deletion
 
-  spliceEntryIfIdMatch = (array, id) => {
+  spliceEntryIfIdMatch (array, id) {
     for (let i = 0; i < array.length; i++) {
-      if (array.id === id) {
+      if (array[i].id === id) {
         array.splice(i, 1);
         break;
       }
     }
-
   }
 
-  deleteGist = (id) => {
+  deleteGist (id) {
     this.gistService.deleteGist(id);
   };
 

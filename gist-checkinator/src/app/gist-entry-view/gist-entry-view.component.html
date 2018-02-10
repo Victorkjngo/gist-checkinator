@@ -1,7 +1,7 @@
 <div class="gist">
    <button (click)="deleteGist(gist.id)" >x</button> 
   <p>
-    Id: {{gist.id}} <a href={{gist.url}}>Name: {{gist.file_name}}</a>
+    Id: {{gist.id}} Name: <a href={{gist.url}}>{{gist.file_name}}</a>
   </p>
   <img class="avatar" src={{gist.owner.avatar_url}}>
   <p>
