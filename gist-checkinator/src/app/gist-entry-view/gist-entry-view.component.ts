@@ -12,6 +12,7 @@ export class GistEntryViewComponent implements OnInit {
   @Input() gists: Object[]; // Need this to remove GistEntryView from GistListView upon deletion
 
   spliceEntryIfIdMatch (array, id) {
+    console.log('SPLICING OUT DELETING THING!');
     for (let i = 0; i < array.length; i++) {
       if (array[i].id === id) {
         array.splice(i, 1);
@@ -21,7 +22,13 @@ export class GistEntryViewComponent implements OnInit {
   }
 
   deleteGist (id) {
-    this.gistService.deleteGist(id);
+    this.gistService.deleteGist(id)
+      .then(_ => {
+        this.spliceEntryIfIdMatch(this.gists, id);
+      })
+      .catch(err => {
+        console.log('GEV: GIST DELETION FAILED! ');
+      })
   };
 
   constructor(private gistService: GistService) {

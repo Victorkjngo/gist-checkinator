@@ -9,8 +9,7 @@ export class GistService {
 
   createGist (title: string, content: string, description: string) {
     console.log('CREATING', title, 'CONTENTS:', content);
-    // Add the thing to gists
-    // send request to gistService
+
     var payload = {
       public: true,
       files: {
@@ -30,7 +29,7 @@ export class GistService {
         if (response.ok) {
           return response.json();
         } else {
-          console.log('GIST POST FAILED');
+          console.log('GIST GET FAILED');
         }
       })
       .catch((err) => {
@@ -60,31 +59,32 @@ export class GistService {
     
   }
 
+  transformDatum (obj) {
+    console.log('TRANFORMATIN THIS', obj);
+    var owner = obj.owner;
+    var files = obj.files;
+    var file = files[Object.keys(files)[0]];
+
+    var newObj =  {
+      id: obj.id,
+      url: obj.html_url,
+      description: obj.description,
+      owner: owner,
+      username: owner.login,
+      file: file,
+      file_name: file.filename,
+      content: file.content,
+    };
+
+    return newObj;
+  }
+
   transformData (array) {
-    // console.log('INCOMING ARRAY', array);
-    return array.map(obj => {
-      var owner = obj.owner;
-      var files = obj.files;
-      var file = files[Object.keys(files)[0]];
-
-      var newObj =  {
-        id: obj.id,
-        url: obj.html_url,
-        description: obj.description,
-        owner: owner,
-        username: owner.login,
-        file: file,
-        file_name: file.filename,
-        content: file.content,
-      };
-
-      // console.log('SERVICE: NewObj', newObj.file_name);
-      return newObj;
-    });
+    console.log('Transforming array', array);
+    return array.map(this.transformDatum);
   }
 
   getData() {
-    // console.log('End result:', this.transformData(GISTS));
     console.log('Trying to get data from github...')
     return fetch('https://api.github.com/users/digital-promise-test/gists?access_token=ebe57335ca486b10e31b74e7a93e4596e36e932d')
       .then((response) => {
@@ -95,9 +95,12 @@ export class GistService {
           console.log('REQUEST FAILED');
         }
       })
-      .then(this.transformData)
+      .then((data) => {
+        return this.transformData(data);
+      })
       .catch((err) => {
         console.log('Wop whop, did something wrong...');
+        console.error('ERROR:', err);
         return [];
       })
 
