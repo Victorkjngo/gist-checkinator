@@ -1,11 +1,12 @@
 <div class="gist">
-   <button>x</button>
-
-  <p>{{gist.file_name}}</p>
+   <button (click)="deleteGist(gist.id)" >x</button> 
+  <p>
+    Id: {{gist.id}} <a href={{gist.url}}>Name: {{gist.file_name}}</a>
+  </p>
+  <img class="avatar" src={{gist.owner.avatar_url}}>
   <p>
      <span>Description:</span>{{gist.description}}
-    </p>
+  </p>
    <textarea>{{gist.content}}</textarea>
    <button>Submit</button>
-   {{gist}}
 </div>

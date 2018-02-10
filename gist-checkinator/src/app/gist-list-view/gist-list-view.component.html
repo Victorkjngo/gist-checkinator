@@ -1,6 +1,6 @@
 <h2>Gist List</h2>
 <ol class="gists">
   <li *ngFor="let gist of gists">
-    <app-gist-entry-view [gist]="gist"></app-gist-entry-view>
+    <app-gist-entry-view [gists]="gists" [gist]="gist"></app-gist-entry-view>
   </li>
 </ol>

@@ -13,12 +13,12 @@ export class GistListViewComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.gists = this.gistService.getData();
-    // .then(function () {
+    this.gistService.getData()
+      .then((json) => {
+        console.log('INITED ', json);
+        this.gists = json;
+      })
       
-      // })
-
-    console.log('GIST LIST VIEW INITS Gists', this.gists);
   }
 
 }
