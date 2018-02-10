@@ -1,9 +1,11 @@
-<h2>Gist List</h2>
-<input #title type="text" placeholder="Gist Title" value="TEST">
-<textarea #textarea type="textarea" placeholder="Gist Contents">
-  I AM TEST CONTENT! SPARTTTAAA!
-</textarea>
-<button (click)="createGist(title.value, textarea.value)">+</button>
+<div class="dashboard">
+  <h2>Gist List</h2>
+  <input #title type="text" placeholder="Gist Title" value="TEST">
+  <textarea #textarea type="textarea" placeholder="Gist Contents">
+    I AM TEST CONTENT! SPARTTTAAA!
+  </textarea>
+  <button (click)="createGist(title.value, textarea.value)">+</button>
+</div>
 <ol class="gists">
   <li *ngFor="let gist of gists">
     <app-gist-entry-view [gists]="gists" [gist]="gist"></app-gist-entry-view>

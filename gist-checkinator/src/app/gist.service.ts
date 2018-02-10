@@ -61,7 +61,6 @@ export class GistService {
   }
 
   transformDatum (obj) {
-    console.log('TRANFORMATIN THIS', obj);
     var owner = obj.owner;
     var files = obj.files;
     var file = files[Object.keys(files)[0]];
@@ -105,7 +104,5 @@ export class GistService {
         return [];
       })
 
-    // return this.transformData(GISTS);
-    /* TODO switch to async later! */
   }
 }
